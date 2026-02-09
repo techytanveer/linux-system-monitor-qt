@@ -1,4 +1,4 @@
-name: C++ Qt CI
+name: C++ Qt6 CI
 
 on:
   push:
@@ -7,9 +7,9 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-
+  # --- JOB 1: UBUNTU BUILD ---
+  build-ubuntu:
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -17,21 +17,48 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake build-essential libgl1-mesa-dev \
-                               qt6-base-dev qt6-base-private-dev
+        sudo apt-get install -y \
+          cmake build-essential libgl1-mesa-dev \
+          qt6-base-dev qt6-base-private-dev \
+          libqt6widgets6 libqt6test6 qt6-test-dev-tools
 
-    - name: Configure CMake
+    - name: Configure and Build
       run: |
-        mkdir build
-        cd build
+        mkdir build && cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release
-
-    - name: Build Project
-      run: |
-        cd build
         make -j$(nproc)
 
-    - name: Run Tests (CTest)
+    - name: Run Tests
       run: |
         cd build
+        export QT_QPA_PLATFORM=offscreen
+        ctest --output-on-failure
+
+  # --- JOB 2: REDHAT (ROCKY LINUX 9) BUILD ---
+  build-redhat:
+    runs-on: ubuntu-latest
+    container: 
+      image: rockylinux:9
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        # Enable CRB (Code Ready Builder) to find development headers
+        dnf install -y 'dnf-command(config-manager)'
+        dnf config-manager --set-enabled crb
+        dnf install -y gcc-c++ cmake make mesa-libGL-devel \
+          qt6-qtbase-devel qt6-qtdeclarative-devel
+
+    - name: Configure and Build
+      run: |
+        mkdir build && cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+        make -j$(nproc)
+
+    - name: Run Tests
+      run: |
+        cd build
+        export QT_QPA_PLATFORM=offscreen
         ctest --output-on-failure
