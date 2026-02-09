@@ -50,11 +50,12 @@ install(FILES system-monitor-qt.desktop DESTINATION share/applications)
 # 3. (Optional) Install an icon if you have a .png file
 install(FILES resources/SMicon.png DESTINATION share/icons/hicolor/64x64/apps)
 
-# --- Packaging Logic (CPack) ---
-set(CPACK_PACKAGE_NAME "system-monitor-qt")
+# --- Packaging Configuration and Logic (CPack) ---
+set(CPACK_PACKAGE_NAME "SystemMonitor")
 set(CPACK_PACKAGE_VENDOR "Tanveer")
 set(CPACK_PACKAGE_VERSION "1.0.0")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A simple Qt-based Linux System Monitor")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A Qt6-based Linux System Monitor")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_CONTACT "tanvahme@gmail.com")
 
 # Specifics for Debian (.deb)
