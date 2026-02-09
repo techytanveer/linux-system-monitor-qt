@@ -12,7 +12,7 @@ set(CMAKE_AUTORCC ON)
 # Enable CTest
 enable_testing()
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Core Test)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Gui Test)
 
 add_executable(SystemMonitor
     src/main.cpp
