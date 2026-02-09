@@ -18,11 +18,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y \
-          cmake build-essential libgl1-mesa-dev \
+          cmake build-essential libgl-dev \
+          libglu1-mesa-dev \
+          libgl1-mesa-dev \
           mesa-common-dev \
-          qt6-base-dev qt6-base-private-dev \
+          qt6-base-dev \
+          qt6-base-private-dev \
           libqt6widgets6 libqt6gui6 \
-          libqt6test6 qt6-test-dev-tools
+          libqt6test6 \
+          qt6-test-dev-tools
 
     - name: Configure and Build
       run: |
@@ -50,10 +54,15 @@ jobs:
         # Enable CRB (Code Ready Builder) to find development headers
         dnf install -y epel-release 'dnf-command(config-manager)'
         dnf config-manager --set-enabled crb
+        dnf makecache
+        
         dnf update -y
         dnf install -y gcc-c++ cmake make mesa-libGL-devel \
-          qt6-qtbase-devel qt6-qtbase-gui \
-          qt6-qtbase-private-devel qt6-qtdeclarative-devel
+          mesa-libGLU-devel \
+          qt6-qtbase-devel \
+          qt6-qtbase-gui \
+          qt6-qtdeclarative-devel \
+          qt6-qtbase-private-devel
 
     - name: Configure and Build
       run: |
