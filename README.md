@@ -1,13 +1,10 @@
-# Hello CPP CI
+# Linux System Monitor (Qt6) CPP CI
 ![Build Status]([![C++ Qt6 CI](https://github.com/techytanveer/linux-system-monitor-qt/actions/workflows/ci.yml/badge.svg)](https://github.com/techytanveer/linux-system-monitor-qt/actions/workflows/ci.yml))
 
 This project uses GitHub Actions to build and test C++ code on Ubuntu 24.04.
 
 1. The GitHub README.md
 This is designed to be professional, scannable, and include all the technical details a recruiter or collaborator would look for.
-
-
-# Linux System Monitor (Qt6)
 
 A lightweight, real-time system monitoring utility built with C++ and Qt6. This tool parses the Linux `/proc` filesystem to provide high-fidelity data on CPU usage, RAM consumption, Network throughput, and process-level resource allocation.
 
