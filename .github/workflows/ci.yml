@@ -16,7 +16,7 @@ jobs:
           cmake build-essential \
           libgl1-mesa-dev libglu1-mesa-dev \
           qt6-base-dev qt6-base-private-dev \
-          libqt6widgets6 libqt6gui6 libqt6core6 libqt6test6 qt6-test-dev-tools
+          libqt6widgets6 libqt6gui6 libqt6core6 libqt6test6 qt6-test-dev
     - name: Build and Test
       run: |
         mkdir build && cd build
