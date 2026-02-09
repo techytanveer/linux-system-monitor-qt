@@ -26,6 +26,16 @@ jobs:
         export QT_QPA_PLATFORM=offscreen
         ctest --output-on-failure
 
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: system-monitor-${{ matrix.os || github.job }}
+        path: |
+          build/SystemMonitor
+          build/*.so
+          build/*.a
+        if-no-files-found: error
+
   build-redhat:
     runs-on: ubuntu-latest
     container: rockylinux:9
@@ -44,3 +54,14 @@ jobs:
         cmake .. && make -j$(nproc)
         export QT_QPA_PLATFORM=offscreen
         ctest --output-on-failure
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: system-monitor-${{ matrix.os || github.job }}
+        path: |
+          build/SystemMonitor
+          build/*.so
+          build/*.a
+        if-no-files-found: error
+        
