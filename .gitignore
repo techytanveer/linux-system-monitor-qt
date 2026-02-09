@@ -1,0 +1,22 @@
+# Build directories
+build/
+bin/
+obj/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+
+# Qt / IDE files
+*.user
+.vscode/
+.idea/
+*.swp
+
+# Binaries
+SystemMonitor
+detector_test

@@ -1,0 +1,37 @@
+name: C++ Qt CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential libgl1-mesa-dev \
+                               qt6-base-dev qt6-base-private-dev
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build Project
+      run: |
+        cd build
+        make -j$(nproc)
+
+    - name: Run Tests (CTest)
+      run: |
+        cd build
+        ctest --output-on-failure

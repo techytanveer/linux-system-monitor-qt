@@ -1,0 +1,54 @@
+name: System Monitor CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # Job 1: Build on Ubuntu (Native Runner)
+  build-ubuntu:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Qt & Build Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential qt6-base-dev
+
+      - name: Build
+        run: |
+          cmake -S . -B build
+          cmake --build build
+
+  # Job 2: Build for RedHat (Inside a Container)
+  build-redhat:
+    runs-on: ubuntu-latest
+    container: 
+      image: rockylinux:9  # This is the binary-compatible successor to CentOS/RHEL
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install RHEL Dependencies
+        run: |
+          dnf install -y gcc-c++ cmake qt6-qtbase-devel
+
+      - name: Build
+        run: |
+          cmake -S . -B build
+          cmake --build build
+
+      - name: Generate .deb Package
+        run: |
+          cd build
+          cpack
+      
+      - name: Upload Artifact
+        uses: actions/checkout@v4
+        with:
+          name: system-monitor-deb
+          path: build/*.deb
