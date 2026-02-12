@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     // CPU USAGE SECTION
     
-    statusLabel = new QLabel("Initializing...", this);
+    //statusLabel = new QLabel("Initializing...", this);
     
     gridLayout->addWidget(new QLabel("<b>CPU Load:</b>"), 10, 0);
     //lblCPULoad = new QLabel("HERE");
