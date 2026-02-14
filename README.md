@@ -3,7 +3,7 @@
 
 This project uses GitHub Actions to build and test C++ code on Ubuntu 24.04.
 
-This is designed to be professional, scannable, and include all the technical details a recruiter or collaborator would look for.
+This is designed to be professional, scannable, and include all the technical details.
 
 A lightweight, real-time system monitoring utility built with C++ and Qt6. This tool parses the Linux `/proc` filesystem to provide high-fidelity data on CPU usage, RAM consumption, Network throughput, and process-level resource allocation.
 
