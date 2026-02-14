@@ -30,6 +30,7 @@ To build this project from source, you will need:
     ├── main.cpp
     ├── SystemInfo.cpp
     └── MainWindow.cpp```
+```
 
 ## 📦 Installation & Build
 
