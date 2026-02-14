@@ -21,7 +21,8 @@ To build this project from source, you will need:
 * **Build System:** CMake (3.16+)
 * **Framework:** Qt6 (Core, Widgets, Gui)
 
-```SystemMonitor/
+```
+SystemMonitor/
 ├── CMakeLists.txt
 ├── include/
 │   ├── SystemInfo.h       # Logic for data retrieval
