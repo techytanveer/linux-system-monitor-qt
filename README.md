@@ -21,6 +21,7 @@ To build this project from source, you will need:
 * **Build System:** CMake (3.16+)
 * **Framework:** Qt6 (Core, Widgets, Gui)
 
+## 📂 Project Structure
 ```
 SystemMonitor/
 ├── CMakeLists.txt
@@ -36,24 +37,17 @@ SystemMonitor/
 ## 📦 Installation & Build
 
 ### 1. Clone the repository
-```bash
+```
 git clone [https://github.com/yourusername/SystemMonitor.git](https://github.com/yourusername/SystemMonitor.git)
 cd SystemMonitor
-2. Build via CMake
-Bash
+```
+### 2. Build via CMake
+```
 mkdir build && cd build
 cmake ..
 make
-3. Run
-Bash
-./SystemMonitor
-📂 Project Structure
-/include - Header files (SystemInfo.h, MainWindow.h)
-
-/src - Logic implementation and UI handling
-
-/resources - Icons and stylesheets
-
+```
+### 3. Run
 
 ---
 
@@ -73,24 +67,24 @@ set(CPACK_GENERATOR "DEB")
 include(CPack)
 Generate the Package:
 
-Bash
+
 cd build
 cmake ..
 make package
 Install it:
 
-Bash
+
 sudo dpkg -i system-monitor-1.0.0.deb
 How to Create an .rpm Package (Fedora/CentOS)
 The process is nearly identical, thanks to CMake's abstraction.
 
 Change the Generator: In your CMakeLists.txt or via terminal, set the generator to RPM:
 
-Bash
+
 cpack -G RPM
 Install it:
 
-Bash
+
 sudo rpm -ivh system-monitor-1.0.0.rpm
 3. Usage Instructions for the App
 Viewing Data
